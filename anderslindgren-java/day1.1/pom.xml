@@ -11,7 +11,7 @@
     <artifactId>day1-1</artifactId>
 
     <properties>
-        <mainClass>com.adventofcode.javatomten.Day1_1</mainClass>
+        <mainClass>com.adventofcode.javatomten.Solution</mainClass>
     </properties>
 
     <dependencies>

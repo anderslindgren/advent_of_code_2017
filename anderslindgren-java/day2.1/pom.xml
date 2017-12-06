@@ -8,10 +8,10 @@
       <version>2017-SNAPSHOT</version>
     </parent>
 
-    <artifactId>day1-2</artifactId>
+    <artifactId>day2-1</artifactId>
 
     <properties>
-        <mainClass>com.adventofcode.javatomten.Solution</mainClass>
+        <mainClass>com.adventofcode.javatomten.Day2_1</mainClass>
     </properties>
 
     <dependencies>

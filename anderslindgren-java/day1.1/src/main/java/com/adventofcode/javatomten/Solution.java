@@ -13,13 +13,13 @@ import static java.lang.Integer.parseInt;
 /**
  * Advent of Code 2017-12-01.
  */
-public class Day1_2 {
+public class Solution {
 
     public static void main(String... args) throws IOException {
-        Day1_2 day = new Day1_2();
-        List<String> input = day.parseArgs(args);
-        int[] numbers = day.toIntArray(input.get(0));
-        int sum = day.parse(numbers);
+        Solution solution = new Solution();
+        List<String> input = solution.parseArgs(args);
+        int[] numbers = solution.toIntArray(input.get(0));
+        int sum = solution.parse(numbers);
         System.out.println(sum);
     }
 
@@ -31,7 +31,7 @@ public class Day1_2 {
         Path path = FileSystems.getDefault().getPath(args[0]);
         BufferedReader reader = Files.newBufferedReader(path);
         return reader.lines()
-                     .collect(Collectors.toList());
+              .collect(Collectors.toList());
     }
 
     int[] toIntArray(String input) {
@@ -44,13 +44,14 @@ public class Day1_2 {
 
     int parse(int[] ints) {
         int result = 0;
-        final int length = ints.length;
-        final int half = length / 2;
-        for (int i = 0; i < length; i++) {
-            final int other = (i + half) % length;
-            if (ints[i] == ints[other]) {
+        final int last = ints.length - 1;
+        for (int i = 0; i < last; i++) {
+            if (ints[i] == ints[i + 1]) {
                 result += ints[i];
             }
+        }
+        if (ints[last] == ints[0]) {
+            result += ints[last];
         }
         return result;
     }

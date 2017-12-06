@@ -6,32 +6,32 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.*;
 
-public class Day1_1Test {
+public class SolutionTest {
 
-    private Day1_1 day;
+    private Solution solution;
 
     @Before
     public void setup() {
-        day = new Day1_1();
+        solution = new Solution();
     }
 
     @Test
     public void shoudReturn3() {
-        assertThat(day.parse(day.toIntArray("1122")), equalTo(3));
+        assertThat(solution.parse(solution.toIntArray("1122")), equalTo(3));
     }
 
     @Test
     public void shoudReturn4() {
-        assertThat(day.parse(day.toIntArray("1111")), equalTo(4));
+        assertThat(solution.parse(solution.toIntArray("1111")), equalTo(4));
     }
 
     @Test
     public void shoudReturn0() {
-        assertThat(day.parse(day.toIntArray("1234")), equalTo(0));
+        assertThat(solution.parse(solution.toIntArray("1234")), equalTo(0));
     }
 
     @Test
     public void shoudReturn9() {
-        assertThat(day.parse(day.toIntArray("91212129")), equalTo(9));
+        assertThat(solution.parse(solution.toIntArray("91212129")), equalTo(9));
     }
 }
