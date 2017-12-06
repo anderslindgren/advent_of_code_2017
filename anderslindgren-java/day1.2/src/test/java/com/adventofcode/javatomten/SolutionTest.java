@@ -4,7 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 public class SolutionTest {
 
@@ -24,6 +24,7 @@ public class SolutionTest {
     public void shoudReturn0() {
         assertThat(solution.parse(solution.toIntArray("1221")), equalTo(0));
     }
+
     @Test
     public void shoudReturn4() {
         assertThat(solution.parse(solution.toIntArray("123425")), equalTo(4));

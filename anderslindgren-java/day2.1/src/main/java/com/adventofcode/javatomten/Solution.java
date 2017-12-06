@@ -10,6 +10,9 @@ import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.lang.String.format;
+import static java.lang.System.getProperty;
+
 /**
  * Advent of Code 2017-12-02.
  */
@@ -19,15 +22,16 @@ public class Solution {
         Solution solution = new Solution();
         List<String> input = solution.parseArgs(args);
         int sum = solution.parse(input);
-        System.out.println(sum);
+        final String dir = getProperty("user.dir");
+        System.out.println(format("%s: %d", dir.substring(dir.lastIndexOf("/") + 1), sum));
     }
 
     private List<String> parseArgs(String[] args) throws IOException {
-        if (args.length < 1) {
-            System.err.println("expected arguments: <input file name>");
-            System.exit(1);
+        String file = "input.txt";
+        if (args.length == 1) {
+            file = args[0];
         }
-        Path path = FileSystems.getDefault().getPath(args[0]);
+        Path path = FileSystems.getDefault().getPath(file);
         BufferedReader reader = Files.newBufferedReader(path);
         return reader.lines()
                      .collect(Collectors.toList());
