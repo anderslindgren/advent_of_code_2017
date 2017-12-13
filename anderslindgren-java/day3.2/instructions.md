@@ -52,4 +52,4 @@ the following values:
 
 What is the first value written that is larger than your puzzle input?
 
-Your puzzle input is still 312051.
+Your puzzle input is still `312051`.
