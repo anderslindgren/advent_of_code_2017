@@ -8,7 +8,6 @@ import java.nio.file.Path;
 import java.util.List;
 
 import static java.lang.Integer.parseInt;
-import static java.lang.Math.abs;
 import static java.lang.Math.ceil;
 import static java.lang.String.format;
 import static java.lang.System.getProperty;
@@ -26,8 +25,7 @@ public class Solution {
         private int size;
         private int x;
         private int y;
-        private int northSouth;
-        private int eastWest;
+        private int value = 1;
         private Heading heading = Heading.EAST;
 
         private Memory(int location) {
@@ -35,49 +33,58 @@ public class Solution {
             while ((size * size) < location) {
                 size += 2;
             }
+            size += 2; // Allocate extra space to not get ArrayIndexOutOfBounds
             board = new int[size][size];
 
             final int start = (int) ceil(size / 2);
             x = start;
             y = start;
-            board[x][y] = 1;
-            for (int i = 2; i <= location; i++) {
-                forward(i);
+            board[x][y] = value;
+            while (location > 1 && value <= location) {
+                forward();
             }
         }
 
         void printMemory() {
             for (int y = size - 1; y >= 0; y--) {
                 for (int x = 0; x < size; x++) {
-                    System.out.print(format("%d5 ", board[x][y]));
+                    System.out.print(format("%5d ", board[x][y]));
                 }
                 System.out.println();
             }
         }
 
-        void forward(int currentValue) {
+        void forward() {
             switch (heading) {
                 case NORTH:
-                    northSouth += 1;
                     y += 1;
                     break;
                 case EAST:
-                    eastWest += 1;
                     x += 1;
                     break;
                 case SOUTH:
-                    northSouth -= 1;
                     y -= 1;
                     break;
                 case WEST:
-                    eastWest -= 1;
                     x -= 1;
                     break;
             }
             if (shouldTurn()) {
                 turnLeft();
             }
-            board[x][y] = currentValue;
+            value = calculateValue();
+            board[x][y] = value;
+        }
+
+        private int calculateValue() {
+            return board[x - 1][y - 1] +
+                    board[x][y - 1] +
+                    board[x + 1][y - 1] +
+                    board[x - 1][y] +
+                    board[x + 1][y] +
+                    board[x - 1][y + 1] +
+                    board[x][y + 1] +
+                    board[x + 1][y + 1];
         }
 
         private boolean shouldTurn() {
@@ -128,8 +135,8 @@ public class Solution {
             return board[x][y - 1];
         }
 
-        int getDistance() {
-            return abs(northSouth) + abs(eastWest);
+        int getValue() {
+            return value;
         }
     }
 
@@ -156,7 +163,7 @@ public class Solution {
 
     int solve(int capacity) {
         Memory memory = new Memory(capacity);
-        return memory.getDistance();
+        return memory.getValue();
     }
 
 }
