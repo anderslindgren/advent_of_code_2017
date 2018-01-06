@@ -24,6 +24,7 @@
         <module>day2.2</module>
         <module>day3.1</module>
         <module>day3.2</module>
+        <module>day4.1</module>
     </modules>
 
     <dependencyManagement>
