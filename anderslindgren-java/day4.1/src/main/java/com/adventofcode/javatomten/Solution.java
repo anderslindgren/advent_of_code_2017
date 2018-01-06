@@ -15,7 +15,7 @@ import static java.lang.System.getProperty;
 import static java.util.stream.Collectors.toList;
 
 /**
- * Advent of Code 2017-12-03.
+ * Advent of Code 2017-12-04.
  */
 public class Solution {
 
